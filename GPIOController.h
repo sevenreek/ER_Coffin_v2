@@ -23,7 +23,7 @@ private:
 public:
 	void init();
 	void free();
-	uint8_t getCorrectCount()
+	uint8_t getCorrectCount();
 };
 class GPIOController {
 public:

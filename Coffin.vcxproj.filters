@@ -33,6 +33,9 @@
     <ClInclude Include="WirelessController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="__vm\.ER_Coffin_v2.vsarduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BoardCoordinator.cpp">

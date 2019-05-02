@@ -7,23 +7,28 @@ WirelessController::WirelessController(int speed, int rx, int tx, int ptt, bool 
 }
 void WirelessController::sendMessage(Message *m, int repeatCount)
 {
-	char * mes = Message::toCharArray(m);
-	int len = strlen(mes);
+	uint8_t * mes = Message::toByteArray(m);
+	int len = TOTAL_LENGTH-1;
 	while (repeatCount--)
 	{
-		driver->send((uint8_t*)mes,len);
+		driver->send(mes,len);
 		driver->waitPacketSent();
 	}
+	delete[] mes;
 }
-bool WirelessController::hasMessage(Message *m)
+bool WirelessController::hasMessage(Message *& m)
 {
+	//Serial.println("Checking...");
 	uint8_t buffer[TOTAL_LENGTH];
 	uint8_t len = TOTAL_LENGTH;
 	if ( driver->recv(buffer, &len) )
 	{
-		if (len == TOTAL_LENGTH)
+		Serial.println();
+		if (len == TOTAL_LENGTH-1)
 		{
-			Message * m = new Message((char*)buffer);
+			m = Message::fromByteArray(buffer);
+			Serial.print("Pointer is:");
+			Serial.println((int)m);
 			return true;
 		}
 		else
