@@ -17,6 +17,7 @@ void CoffinTop::free()
 }
 void CoffinTop::open()
 {
+	Serial.println("Unlocking coffin...");
 	digitalWrite(PIN_MAGNET, LOW);
 	delay(100);
 	digitalWrite(PIN_MAGNET, HIGH);

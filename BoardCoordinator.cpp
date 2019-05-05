@@ -1,7 +1,7 @@
 #include "BoardCoordinator.h"
 BoardCoordinator::BoardCoordinator(WirelessController * wireless, GPIOController * gpio)
 {
-	opened = true;
+	opened = false;
 	this->wireless = wireless;
 	this->gpio = gpio;
 }
@@ -11,13 +11,12 @@ void BoardCoordinator::onUpdate()
 	if (!opened && wireless->hasMessage(msg))
 	{
 
-		Serial.print("Then pointer is:");
-		Serial.println((int)msg);
-		Serial.print(msg->sender);Serial.print(" = ");Serial.println(SNDR_MEGA);
-		Serial.print(msg->command);;Serial.print(" = ");Serial.println(CMD_COFFIN_UNLOCKED);
+		//Serial.print("Then pointer is:");
+		//Serial.println((int)msg);
+		//Serial.print(msg->sender);Serial.print(" = ");Serial.println(SNDR_MEGA);
+		//Serial.print(msg->command);;Serial.print(" = ");Serial.println(CMD_COFFIN_UNLOCKED);
 		if (msg->sender == SNDR_MEGA && msg->command==CMD_COFFIN_UNLOCKED)
 		{
-			Serial.println("Unlocking coffin...");
 			gpio->coffinTop.open();
 			opened = true;
 		}

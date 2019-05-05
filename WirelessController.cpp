@@ -23,12 +23,12 @@ bool WirelessController::hasMessage(Message *& m)
 	uint8_t len = TOTAL_LENGTH;
 	if ( driver->recv(buffer, &len) )
 	{
-		Serial.println();
+		//Serial.println("Got something");
 		if (len == TOTAL_LENGTH-1)
 		{
 			m = Message::fromByteArray(buffer);
-			Serial.print("Pointer is:");
-			Serial.println((int)m);
+			//Serial.print("Pointer is:");
+			//Serial.println((int)m);
 			return true;
 		}
 		else
