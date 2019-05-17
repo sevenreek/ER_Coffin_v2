@@ -16,7 +16,7 @@ public:
 	void free();
 	void open();
 };
-static const uint8_t SKELETON_REED_COUNT = 5;
+static const uint8_t SKELETON_REED_COUNT = 4; // chest and skull are now locked in place
 class Skeleton :  GameObject {
 private:
 	static const uint8_t PIN_REEDS[SKELETON_REED_COUNT];

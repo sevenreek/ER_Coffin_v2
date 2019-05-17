@@ -1,5 +1,5 @@
 #include "WirelessController.h"
-
+const int WirelessController::REPEAT_COUNT = 1000;
 WirelessController::WirelessController(int speed, int rx, int tx, int ptt, bool ptt_inv)
 {
 	driver = new RH_ASK(speed, rx, tx, ptt, ptt_inv);
