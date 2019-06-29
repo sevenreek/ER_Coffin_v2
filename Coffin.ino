@@ -28,6 +28,7 @@ BoardCoordinator * coordinator;
 void setup()
 {
 	Serial.begin(9600);
+	Serial.println("Booting");
 	wireless = new WirelessController(2000, 3, 5, 10, false);
 	gpio = new GPIOController();
 	coordinator = new BoardCoordinator(wireless, gpio);
