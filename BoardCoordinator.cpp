@@ -21,7 +21,7 @@ void BoardCoordinator::onUpdate()
 	Message * msg = 0;
 	if (wireless->hasMessage(msg))
 	{
-		if (msg->sender == SNDR_MEGA && msg->command==CMD_COFFIN_UNLOCKED)
+		if (msg->sender == SNDR_MEGA && msg->command==CMD_COFFIN_UNLOCKED && state!=OPENED)
 		{
 			gpio->coffinTop.open();
 			state = OPENED;	

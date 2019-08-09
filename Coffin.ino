@@ -32,7 +32,7 @@ void setup()
 	wireless = new WirelessController(2000, 3, 5, 10, false);
 	gpio = new GPIOController();
 	coordinator = new BoardCoordinator(wireless, gpio);
-
+	//gpio->coffinTop.open();
 }
 
 // Add the main program code into the continuous loop() function
