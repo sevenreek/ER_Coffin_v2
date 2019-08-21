@@ -20,9 +20,13 @@ static const uint8_t SKELETON_REED_COUNT = 4; // chest and skull are now locked 
 class Skeleton :  GameObject {
 private:
 	static const uint8_t PIN_REEDS[SKELETON_REED_COUNT];
+	static const uint8_t PIN_LEDS[SKELETON_REED_COUNT];
+	static const uint8_t PIN_CHEST_LED;
 public:
 	void init();
 	void free();
+	void begin();
+	void killLEDs();
 	uint8_t getCorrectCount();
 };
 class GPIOController {

@@ -9,6 +9,7 @@ BoardCoordinator::BoardCoordinator(WirelessController * wireless, GPIOController
 }
 void BoardCoordinator::finishPuzzle()
 {
+	gpio->skeleton.killLEDs();
 	unlockTimer = 0;
 	Serial.println("Finished skeleton");
 	Message* m = new Message(SNDR_COFFIN, MTYPE_STATE, CMD_COFFIN_COMPLETED, 0);
@@ -24,6 +25,7 @@ void BoardCoordinator::onUpdate()
 		if (msg->sender == SNDR_MEGA && msg->command==CMD_COFFIN_UNLOCKED && state!=OPENED)
 		{
 			gpio->coffinTop.open();
+			gpio->skeleton.begin();
 			state = OPENED;	
 		}
 		delete msg;
