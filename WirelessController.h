@@ -1,14 +1,15 @@
 #pragma once
+#include "RF24.h"
 #include <SPI.h>
-#include <RH_ASK.h>
 #include "Message.h"
 #include "Arduino.h"
 class WirelessController {
 private:
-	RH_ASK * driver;
+	RF24 * driver;
 public:
-	static const int REPEAT_COUNT;
-	WirelessController(int speed, int rx, int tx, int ptt, bool ptt_inv);
+	const static uint8_t MEGA_ADDRESS[];
+	const static uint8_t COFFIN_ADDRESS[];
+	WirelessController(int cePin, int csPin);
 	void sendMessage(Message * m, int repeatCount);
 	bool hasMessage(Message *& m);
 };

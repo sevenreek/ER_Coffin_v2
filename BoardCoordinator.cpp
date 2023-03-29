@@ -11,7 +11,7 @@ void BoardCoordinator::finishPuzzle()
 {
 	Serial.println("Finished skeleton");
 	Message* m = new Message(SNDR_COFFIN, MTYPE_STATE, CMD_COFFIN_COMPLETED, 0);
-	wireless->sendMessage(m, WirelessController::REPEAT_COUNT);
+	wireless->sendMessage(m, 1);
 	delete m;
 	state = DONE;
 }

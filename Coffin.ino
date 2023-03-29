@@ -19,7 +19,6 @@
 
 // The setup() function runs once each time the micro-controller starts
 
-#include <RH_ASK.h>
 #include <SPI.h>
 #include "BoardCoordinator.h"
 WirelessController * wireless;
@@ -28,7 +27,8 @@ BoardCoordinator * coordinator;
 void setup()
 {
 	Serial.begin(9600);
-	wireless = new WirelessController(2000, 3, 5, 10, false);
+	Serial.println("Starting");
+	wireless = new WirelessController(14, 10);
 	gpio = new GPIOController();
 	coordinator = new BoardCoordinator(wireless, gpio);
 

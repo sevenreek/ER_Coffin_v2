@@ -5,7 +5,7 @@ GPIOController::GPIOController()
 	coffinTop.init();
 	skeleton.init();
 }
-const uint8_t CoffinTop::PIN_MAGNET = 9;
+const uint8_t CoffinTop::PIN_MAGNET = 3;
 void CoffinTop::init()
 {
 	pinMode(PIN_MAGNET, OUTPUT);
@@ -24,7 +24,7 @@ void CoffinTop::open()
 }
 
 
-const uint8_t Skeleton::PIN_REEDS[SKELETON_REED_COUNT] = {8,11,10,A0}; // chest and skull are now permanently fixed inplace.
+const uint8_t Skeleton::PIN_REEDS[SKELETON_REED_COUNT] = {5, 6, 7, 8}; // chest and skull are now permanently fixed inplace.
 void Skeleton::init()
 {
 	for (int i = 0; i < SKELETON_REED_COUNT; i++)
