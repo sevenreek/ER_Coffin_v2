@@ -1,10 +1,10 @@
 #pragma once
 #include "Arduino.h"
-static const int ARGUMENT_LENGTH = 4;
-static const int PREAMBLE_LENGTH = 2; // MessageSource + MessageType
-static const int COMMAND_LENGTH = 1;
-static const int POSTAMBLE_LENGTH = 1; // \n
-static const int TOTAL_LENGTH = PREAMBLE_LENGTH + COMMAND_LENGTH + ARGUMENT_LENGTH + POSTAMBLE_LENGTH;
+static const uint8_t ARGUMENT_LENGTH = 4;
+static const uint8_t PREAMBLE_LENGTH = 2; // MessageSource + MessageType
+static const uint8_t COMMAND_LENGTH = 1;
+static const uint8_t POSTAMBLE_LENGTH = 1; // \n
+static const uint8_t TOTAL_LENGTH = PREAMBLE_LENGTH + COMMAND_LENGTH + ARGUMENT_LENGTH + POSTAMBLE_LENGTH;
 static const uint8_t MESSAGE_SHIFT = 0x30; // messages are shifted by hex 0x30 since 0 is \0 and 10 is new line etc.
 enum MessageType {
 	MTYPE_UNDEFINED,
@@ -50,6 +50,3 @@ public:
 	static uint8_t* toByteArray(Message* message);
 	static Message* fromByteArray(uint8_t* message);
 };
-
-
-

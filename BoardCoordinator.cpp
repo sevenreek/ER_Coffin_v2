@@ -18,22 +18,15 @@ void BoardCoordinator::finishPuzzle()
 void BoardCoordinator::onUpdate()
 {
 	Message * msg = 0;
-	if (state == LOCKED && wireless->hasMessage(msg))
+	if (wireless->hasMessage(msg) && msg->sender == SNDR_MEGA && msg->command==CMD_COFFIN_UNLOCKED)
 	{
-
-		//Serial.print("Then pointer is:");
-		//Serial.println((int)msg);
-		//Serial.print(msg->sender);Serial.print(" = ");Serial.println(SNDR_MEGA);
-		//Serial.print(msg->command);;Serial.print(" = ");Serial.println(CMD_COFFIN_UNLOCKED);
-		if (msg->sender == SNDR_MEGA && msg->command==CMD_COFFIN_UNLOCKED)
-		{
-			gpio->coffinTop.open();
-			state = OPENED;
-			
-		}
+		Serial.println("Unlocking");
+		gpio->coffinTop.open();
+		state = OPENED;
 		delete msg;
 	}
-	else if (state == OPENED)
+	
+	if (state == OPENED)
 	{
 		lastUpdate = millis();
 		if (gpio->skeleton.getCorrectCount() == SKELETON_REED_COUNT)
@@ -42,13 +35,11 @@ void BoardCoordinator::onUpdate()
 		}
 		else if (gpio->skeleton.getCorrectCount() == SKELETON_REED_COUNT-1 && lastUpdate != millis())
 		{
-			//Serial.println("add:");
-			//Serial.println((millis() - lastUpdate));
 			unlockTimer = unlockTimer + (millis() - lastUpdate);
 	
-			Serial.println(unlockTimer);
-			if (unlockTimer >= PARTIAL_UNLOCK_TIME)
+			if (unlockTimer >= PARTIAL_UNLOCK_TIME) {
 				finishPuzzle();
+			}
 		}
 		delay(1);
 	}

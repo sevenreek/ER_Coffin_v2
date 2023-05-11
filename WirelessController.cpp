@@ -5,6 +5,9 @@ const uint8_t WirelessController::COFFIN_ADDRESS[5] = "cffn";
 WirelessController::WirelessController(int cePin, int csPin)
 {
 	driver = new RF24(cePin, csPin);
+}
+void WirelessController::begin() 
+{ 
 	driver->begin();
 	driver->setPALevel(RF24_PA_LOW);
 	driver->setAddressWidth(4);
@@ -17,7 +20,6 @@ WirelessController::WirelessController(int cePin, int csPin)
 void WirelessController::sendMessage(Message *m, int repeatCount)
 {
 	uint8_t * mes = Message::toByteArray(m);
-	Serial.println("Sending wireless");
 	driver->stopListening();
 	do {
 		driver->write(mes, TOTAL_LENGTH);
@@ -32,7 +34,6 @@ bool WirelessController::hasMessage(Message *&m)
 	uint8_t pipe;
 	if (driver->available(&pipe))
 	{
-		Serial.println("Got wireless");
 		driver->read(&buffer, len);
 		m = Message::fromByteArray(buffer);
 		return true;
